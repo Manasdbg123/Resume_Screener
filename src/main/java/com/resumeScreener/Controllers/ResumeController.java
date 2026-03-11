@@ -22,7 +22,7 @@ public class ResumeController {
     private AnalysisRepository analysisRepository;
 
     /**
-     * Upload one resume for analysis
+     * Upload resume
      * form-data:
      *  - file: multipart file
      *  - jobId: long

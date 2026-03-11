@@ -77,6 +77,7 @@ public class AIAnalysisService {
         return obj;
     }
 
+//    {} ke beech ka part nikalta hai
     private String extractJson(String content) {
         content = content.trim();
         int start = content.indexOf('{');

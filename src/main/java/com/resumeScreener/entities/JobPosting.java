@@ -17,11 +17,11 @@ public class JobPosting {
     private String description;
 
     @Column(columnDefinition = "TEXT")
-    private String requiredSkills; // comma separated or JSON string
+    private String requiredSkills; // comma separated
 
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    // Getters & setters
+
     public Long getJobId() { return jobId; }
     public void setJobId(Long jobId) { this.jobId = jobId; }
     public String getTitle() { return title; }

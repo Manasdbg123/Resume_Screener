@@ -57,7 +57,7 @@ public class ResumeService {
         analysis.setJobPosting(job);
         analysis.setCandidate(candidate);
 
-        // matchScore might be integer/double
+        // matchScore might be integer or double
         double score = 0.0;
         try {
             score = aiResponse.optDouble("matchScore", aiResponse.optInt("matchScore", 0));
