@@ -4,6 +4,7 @@ package com.resumeScreener.Services;
 import com.resumeScreener.Repositories.AnalysisRepository;
 import com.resumeScreener.Repositories.CandidateRepository;
 import com.resumeScreener.Repositories.JobRepository;
+import com.resumeScreener.dto.ResumeReviewResponse;
 import com.resumeScreener.entities.Candidate;
 import com.resumeScreener.entities.JobPosting;
 import com.resumeScreener.entities.ResumeAnalysis;
@@ -78,6 +79,15 @@ public class ResumeService {
         analysis = analysisRepository.save(analysis);
 
         return analysis;
+    }
+
+    public ResumeReviewResponse reviewResume(MultipartFile file, String candidateName, String targetRole) throws Exception {
+        String resumeText = tika.parseToString(file.getInputStream());
+
+        ResumeReviewResponse response = aiService.reviewResume(targetRole, candidateName, resumeText);
+        String preview = resumeText.length() > 1200 ? resumeText.substring(0, 1200) + "..." : resumeText;
+        response.setExtractedTextPreview(preview);
+        return response;
     }
 }
 

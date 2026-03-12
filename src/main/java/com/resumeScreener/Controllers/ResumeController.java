@@ -3,6 +3,7 @@ package com.resumeScreener.Controllers;
 
 import com.resumeScreener.Repositories.AnalysisRepository;
 import com.resumeScreener.Services.ResumeService;
+import com.resumeScreener.dto.ResumeReviewResponse;
 import com.resumeScreener.entities.ResumeAnalysis;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -37,6 +38,13 @@ public class ResumeController {
         if (candidateName == null) candidateName = "Unknown";
         if (candidateEmail == null) candidateEmail = "";
         return resumeService.processResumeFile(file, jobId, candidateName, candidateEmail);
+    }
+
+    @PostMapping("/review")
+    public ResumeReviewResponse reviewResume(@RequestParam("file") MultipartFile file,
+                                             @RequestParam(value = "candidateName", required = false) String candidateName,
+                                             @RequestParam(value = "targetRole", required = false) String targetRole) throws Exception {
+        return resumeService.reviewResume(file, candidateName, targetRole);
     }
 
     @GetMapping("/analysis/job/{jobId}")
