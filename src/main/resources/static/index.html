@@ -7,76 +7,62 @@
     <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
+<div class="ambient ambient-one"></div>
+<div class="ambient ambient-two"></div>
+
 <div class="page-shell">
-    <header class="hero">
+    <header class="hero-wrap">
         <nav class="topbar">
             <div class="brand">
                 <span class="brand-mark">RS</span>
                 <div>
-                    <p class="eyebrow">Hiring Workspace</p>
+                    <p class="eyebrow">Recruiting Platform</p>
                     <h1>Resume Screener Hub</h1>
                 </div>
             </div>
-            <div class="topbar-copy">
-                <p>Collect resumes, publish job roles, and return instant AI feedback to every applicant.</p>
+
+            <div class="nav-links">
+                <a href="#jobs-board">Jobs</a>
+                <a href="#workspace">Workspace</a>
+                <a href="#results-section">Results</a>
             </div>
+
             <div class="auth-badge-wrap">
                 <div id="auth-badge" class="auth-badge">Guest</div>
             </div>
         </nav>
 
         <section class="hero-grid">
-            <article class="hero-card hero-main">
-                <p class="eyebrow">Candidate Experience</p>
-                <h2>A proper front door for resume reviews.</h2>
-                <p>
-                    Applicants can upload a CV for a general review or submit it against one of your jobs. The app
-                    shows scores, gaps, strengths, and next-step suggestions in a structured layout.
+            <article class="hero-panel hero-copy">
+                <p class="eyebrow">AI Resume Intelligence</p>
+                <h2>Make your hiring website look credible from the first screen.</h2>
+                <p class="hero-text">
+                    A polished hiring hub for publishing roles, collecting resumes, and delivering instant,
+                    structured CV feedback. Built for candidates and recruiters in one place.
                 </p>
+
                 <div class="hero-actions">
                     <a href="#candidate-tools" class="button button-primary">Review a CV</a>
-                    <a href="#jobs-board" class="button button-secondary">Browse Jobs</a>
+                    <a href="#jobs-board" class="button button-secondary">Explore Jobs</a>
                 </div>
-            </article>
 
-            <article class="hero-card metric-card">
-                <p class="eyebrow">Live Stats</p>
-                <div class="metrics">
-                    <div>
-                        <span id="jobs-count" class="metric-value">0</span>
-                        <span class="metric-label">Open jobs</span>
+                <div class="hero-proof">
+                    <div class="proof-item">
+                        <span class="proof-label">Professional review</span>
+                        <strong>AI scoring, skills gap, remarks</strong>
                     </div>
-                    <div>
-                        <span id="analyses-count" class="metric-value">0</span>
-                        <span class="metric-label">Stored analyses</span>
+                    <div class="proof-item">
+                        <span class="proof-label">Recruiter workspace</span>
+                        <strong>Publish roles and manage intake</strong>
                     </div>
                 </div>
             </article>
-        </section>
-    </header>
 
-    <main class="content">
-        <section id="jobs-board" class="section-block">
-            <div class="section-heading">
-                <div>
-                    <p class="eyebrow">Jobs Board</p>
-                    <h2>Published roles</h2>
-                </div>
-                <button id="refresh-jobs" class="button button-secondary" type="button">Refresh</button>
-            </div>
-
-            <div id="jobs-empty" class="empty-state hidden">
-                No jobs published yet. Add one below to start receiving role-specific CV analysis.
-            </div>
-            <div id="jobs-list" class="jobs-grid"></div>
-        </section>
-
-        <section class="section-block layout-two">
-            <article class="panel">
-                <div class="section-heading compact">
+            <article class="hero-panel auth-hero-panel">
+                <div class="section-heading compact no-margin">
                     <div>
-                        <p class="eyebrow">Access</p>
-                        <h2>Login or create account</h2>
+                        <p class="eyebrow">Account Access</p>
+                        <h3>Login or sign up</h3>
                     </div>
                 </div>
 
@@ -125,11 +111,77 @@
                 </div>
             </article>
 
-            <article class="panel">
+            <article class="hero-panel hero-stats">
+                <div class="section-heading compact no-margin">
+                    <div>
+                        <p class="eyebrow">Platform Snapshot</p>
+                        <h3>Live overview</h3>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span id="jobs-count" class="metric-value">0</span>
+                        <span class="metric-label">Active jobs</span>
+                    </div>
+                    <div class="stat-card">
+                        <span id="analyses-count" class="metric-value">0</span>
+                        <span class="metric-label">Resume analyses</span>
+                    </div>
+                </div>
+
+                <div class="insight-card">
+                    <p class="eyebrow">What candidates get</p>
+                    <ul class="insight-list">
+                        <li>Clear score and summary</li>
+                        <li>Strengths and improvement areas</li>
+                        <li>Role-based missing skills</li>
+                    </ul>
+                </div>
+            </article>
+        </section>
+    </header>
+
+    <main class="content">
+        <section class="feature-strip">
+            <article class="feature-card">
+                <p class="eyebrow">Publishing</p>
+                <h3>Beautiful jobs board</h3>
+                <p>Present openings in a clean, modern card layout that looks trustworthy.</p>
+            </article>
+            <article class="feature-card">
+                <p class="eyebrow">Candidate Flow</p>
+                <h3>One-click CV review</h3>
+                <p>Upload a resume, pick a role, and surface structured feedback instantly.</p>
+            </article>
+            <article class="feature-card">
+                <p class="eyebrow">Admin Access</p>
+                <h3>Simple account control</h3>
+                <p>Keep role publishing locked to signed-in admins while candidates can still apply.</p>
+            </article>
+        </section>
+
+        <section id="jobs-board" class="section-block">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">Open Opportunities</p>
+                    <h2>Featured jobs board</h2>
+                </div>
+                <button id="refresh-jobs" class="button button-secondary" type="button">Refresh jobs</button>
+            </div>
+
+            <div id="jobs-empty" class="empty-state hidden">
+                No jobs published yet. Add one below to start receiving role-specific CV analysis.
+            </div>
+            <div id="jobs-list" class="jobs-grid"></div>
+        </section>
+
+        <section id="workspace" class="workspace-grid">
+            <article class="panel recruiter-panel">
                 <div class="section-heading compact">
                     <div>
-                        <p class="eyebrow">Create Job</p>
-                        <h2>Add a new opening</h2>
+                        <p class="eyebrow">Recruiter Console</p>
+                        <h2>Publish a new role</h2>
                     </div>
                 </div>
 
@@ -152,11 +204,11 @@
                 </form>
             </article>
 
-            <article id="candidate-tools" class="panel">
+            <article id="candidate-tools" class="panel candidate-panel">
                 <div class="section-heading compact">
                     <div>
-                        <p class="eyebrow">Candidate Tools</p>
-                        <h2>Upload and review a resume</h2>
+                        <p class="eyebrow">Candidate Studio</p>
+                        <h2>Resume review workspace</h2>
                     </div>
                 </div>
 
@@ -164,6 +216,8 @@
                     <button class="tab-button active" type="button" data-tab="general-review">General Review</button>
                     <button class="tab-button" type="button" data-tab="job-review">Apply to Job</button>
                 </div>
+
+                <p id="candidate-auth-hint" class="status hidden">Login or sign up from the top panel before applying to a job.</p>
 
                 <div id="general-review" class="tab-panel active">
                     <form id="review-form" class="stack-form">
@@ -212,7 +266,7 @@
         <section id="results-section" class="section-block hidden">
             <div class="section-heading">
                 <div>
-                    <p class="eyebrow">Results</p>
+                    <p class="eyebrow">Assessment Output</p>
                     <h2>Resume feedback</h2>
                 </div>
             </div>

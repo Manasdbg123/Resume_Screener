@@ -17,6 +17,7 @@ const authBadge = document.getElementById("auth-badge");
 const authSummary = document.getElementById("auth-summary");
 const logoutButton = document.getElementById("logout-button");
 const jobAuthHint = document.getElementById("job-auth-hint");
+const candidateAuthHint = document.getElementById("candidate-auth-hint");
 const jobForm = document.getElementById("job-form");
 
 const tabButtons = Array.from(document.querySelectorAll(".tab-button"));
@@ -129,12 +130,21 @@ function renderJobs() {
             <p class="eyebrow">Job #${job.jobId}</p>
             <h3>${escapeHtml(job.title || "Untitled role")}</h3>
             <p class="job-meta">${formatDate(job.createdAt)}</p>
-            <p>${escapeHtml(trimText(job.description || "", 220))}</p>
+            <p class="job-description">${escapeHtml(trimText(job.description || "", 220))}</p>
             ${skillMarkup}
             <button class="button button-secondary" type="button" data-apply-job="${job.jobId}">Apply to this job</button>
         `;
 
         card.querySelector("[data-apply-job]").addEventListener("click", () => {
+            if (!state.auth.authenticated) {
+                candidateAuthHint.classList.remove("hidden");
+                document.getElementById("login-panel").classList.add("active");
+                document.getElementById("signup-panel").classList.remove("active");
+                authTabButtons.forEach((item) => item.classList.toggle("active", item.dataset.authTab === "login-panel"));
+                window.scrollTo({ top: 0, behavior: "smooth" });
+                return;
+            }
+
             applicationJob.value = String(job.jobId);
             document.querySelector('[data-tab="job-review"]').click();
             document.getElementById("candidate-tools").scrollIntoView({ behavior: "smooth", block: "start" });
@@ -322,6 +332,13 @@ async function handleJobApplication(event) {
     const status = document.getElementById("application-status");
     const fileInput = document.getElementById("application-file");
 
+    if (!state.auth.authenticated) {
+        status.textContent = "Login is required before applying to a job.";
+        candidateAuthHint.classList.remove("hidden");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        return;
+    }
+
     if (!fileInput.files.length) {
         status.textContent = "Choose a resume file first.";
         return;
@@ -461,9 +478,11 @@ function escapeHtml(value) {
 function updateAuthUI() {
     const isAuthenticated = Boolean(state.auth.authenticated);
     const isAdmin = state.auth.role === "ADMIN";
+    const displayName = state.auth.name || state.auth.email || "Guest";
+    const initial = displayName.trim().charAt(0).toUpperCase() || "G";
 
     authBadge.textContent = isAuthenticated
-        ? `${state.auth.name || state.auth.email} (${state.auth.role})`
+        ? `${initial} ${displayName} (${state.auth.role})`
         : "Guest";
 
     authSummary.textContent = isAuthenticated
@@ -474,6 +493,10 @@ function updateAuthUI() {
     jobAuthHint.textContent = isAdmin
         ? "You are logged in as admin and can publish jobs."
         : "Login as an admin to publish jobs.";
+    candidateAuthHint.classList.toggle("hidden", isAuthenticated);
+    candidateAuthHint.textContent = isAuthenticated
+        ? ""
+        : "Login or sign up from the top panel before applying to a job.";
 
     Array.from(jobForm.elements).forEach((element) => {
         if (element.id === "job-status") {
